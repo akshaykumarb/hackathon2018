@@ -35,6 +35,13 @@ public class ProductController {
     }
 
 
+    @GetMapping("/cart")
+    @ResponseBody
+    public List<Cart> getCart() {
+        System.out.println("*** gettting all products****");
+        return cartRepository.findAll();
+    }
+
     @GetMapping("/products/{desc}")
     @ResponseBody
     public void searchProduct(@PathVariable(value = "desc") String desc) {
