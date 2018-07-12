@@ -31,9 +31,9 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
         String[] splitStr = itemDesc.split("\\s+");
 
         for (String product : splitStr) {
-            List<Object[]> productList = entityManager.createQuery("select item_name, price from Product where item_description = :description").setParameter("description", product).getResultList();
+            List<Object[]> productList = entityManager.createQuery("select item_name, price, item_description from Product where item_description = :description").setParameter("description", product).getResultList();
             System.out.println("productList.size()......" + productList.size());
-            productList.stream().forEach(row -> cartRepository.save(new Cart((String) row[0], (BigDecimal) row[1],cartId)));
+            productList.stream().forEach(row -> cartRepository.save(new Cart((String) row[0], (BigDecimal) row[1],cartId, (String) row[2])));
         }
     }
 
@@ -41,8 +41,9 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
     @Override
     public List<Cart> getCartItems(int cartId) {
 
+        System.out.println(cartId);
 
-            List<Cart> cartList = entityManager.createQuery("select * from Cart where cart_id = :description").setParameter("description", cartId).getResultList();
+            List<Cart> cartList = entityManager.createQuery("from Cart where cart_id = :description").setParameter("description", cartId).getResultList();
             System.out.println("productList.size()......" + cartList.size());
            // productList.stream().forEach(row -> cartRepository.save(new Cart((String) row[0], (BigDecimal) row[1],cartId)));
         return  cartList;

@@ -22,10 +22,21 @@ public class Cart implements Serializable {
 
     private int  cart_id;
 
-    public Cart(String item_name, BigDecimal  price, int cart_id) {
+    private String item_description;
+
+    public Cart(String item_name, BigDecimal  price, int cart_id, String item_description) {
         this.item_name=item_name;
         this.price=price;
         this.cart_id=cart_id;
+        this.item_description=item_description;
+    }
+
+    public String getItem_description() {
+        return item_description;
+    }
+
+    public void setItem_description(String item_description) {
+        this.item_description = item_description;
     }
 
     public int getCart_id() {
