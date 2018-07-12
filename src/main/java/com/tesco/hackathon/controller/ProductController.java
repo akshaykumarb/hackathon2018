@@ -5,6 +5,7 @@ package com.tesco.hackathon.controller;
 
 import com.tesco.hackathon.exception.ResourceNotFoundException;
 import com.tesco.hackathon.model.Cart;
+import com.tesco.hackathon.model.CartKey;
 import com.tesco.hackathon.model.Product;
 import com.tesco.hackathon.repository.CartRepository;
 import com.tesco.hackathon.repository.ProductRepository;
@@ -26,6 +27,9 @@ public class ProductController {
     @Autowired
     CartRepository cartRepository;
 
+    @Autowired
+    CartKey cartKey;
+
 
     @GetMapping("/products")
     @ResponseBody
@@ -42,11 +46,11 @@ public class ProductController {
         return cartRepository.findAll();
     }
 
-    @GetMapping("/products/{desc}")
+    @GetMapping("/products/{cartKey}")
     @ResponseBody
-    public void searchProduct(@PathVariable(value = "desc") String desc) {
+    public void searchProduct(@PathVariable CartKey cartKey) {
 // search the product in product table for description and insert to cart table
-      productRepository.insertToCart(desc);
+      productRepository.insertToCart(cartKey);
 
 
     }

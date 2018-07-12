@@ -20,9 +20,20 @@ public class Cart implements Serializable {
 
     private BigDecimal  price;
 
-    public Cart(String item_name, BigDecimal  price) {
+    private int  cart_id;
+
+    public Cart(String item_name, BigDecimal  price, int cart_id) {
         this.item_name=item_name;
         this.price=price;
+        this.cart_id=cart_id;
+    }
+
+    public int getCart_id() {
+        return cart_id;
+    }
+
+    public void setCart_id(int cart_id) {
+        this.cart_id = cart_id;
     }
 
     public Long getId() {

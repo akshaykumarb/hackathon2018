@@ -1,6 +1,7 @@
 package com.tesco.hackathon.repository;
 
 import com.tesco.hackathon.model.Cart;
+import com.tesco.hackathon.model.CartKey;
 import com.tesco.hackathon.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,11 +26,14 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
 
 
     @Override
-    public void insertToCart(String description) {
+    public void insertToCart(CartKey cartKey) {
 
-        List<Object[]> productList = entityManager.createQuery("select item_name, price from Product where item_description = :description").setParameter("description", description).getResultList();
-        System.out.println("productList.size()......" + productList.size());
-        productList.stream().forEach(row -> cartRepository.save(new Cart((String) row[0], (BigDecimal) row[1])));
+        String[] splitStr = cartKey.getDescription().split("\\s+");
 
+        for (String product : splitStr) {
+            List<Object[]> productList = entityManager.createQuery("select item_name, price from Product where item_description = :description").setParameter("description", product).getResultList();
+            System.out.println("productList.size()......" + productList.size());
+            productList.stream().forEach(row -> cartRepository.save(new Cart((String) row[0], (BigDecimal) row[1], (int) cartKey.getCartID())));
+        }
     }
 }
