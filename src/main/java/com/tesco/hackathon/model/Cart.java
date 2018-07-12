@@ -8,6 +8,10 @@ import java.math.BigDecimal;
 @Table(name ="cart")
 public class Cart implements Serializable {
 
+    public Cart() {
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

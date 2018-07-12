@@ -8,8 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name ="product_details")
-//@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
-//        allowGetters = true)
+
 public class Product implements Serializable {
 
 
