@@ -24,7 +24,7 @@ public class ReadFile {
 
         while ((line = bufferedReader.readLine()) != null) {
 
-            String[] keyWords = line.split(" ");
+            String[] keyWords = line.split("\\s+");
 
             for (int i = 0; i < keyWords.length; i++) {
 
