@@ -1,6 +1,7 @@
 package com.tesco.hackathon.repository;
 
 import com.tesco.hackathon.model.Cart;
+import com.tesco.hackathon.model.CartDTO;
 import com.tesco.hackathon.model.CartKey;
 import com.tesco.hackathon.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 
@@ -39,14 +42,16 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
 
 
     @Override
-    public List<Cart> getCartItems(int cartId) {
+    public Set<CartDTO> getCartItems(int cartId) {
 
         System.out.println(cartId);
 
-            List<Cart> cartList = entityManager.createQuery("select distinct item_name,price,cart_id,item_description from Cart where cart_id = :description").setParameter("description", cartId).getResultList();
+            List<Cart> cartList = entityManager.createQuery("from Cart where cart_id = :description").setParameter("description", cartId).getResultList();
             System.out.println("productList.size()......" + cartList.size());
+            Set<CartDTO> setCart = new HashSet<>();
+            cartList.stream().forEach(row-> setCart.add(new CartDTO(row.getItem_name(),row.getPrice(),row.getCart_id(),row.getItem_description())));
            // productList.stream().forEach(row -> cartRepository.save(new Cart((String) row[0], (BigDecimal) row[1],cartId)));
-        return  cartList;
+        return  setCart;
 
     }
 }

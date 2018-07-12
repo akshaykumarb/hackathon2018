@@ -5,6 +5,7 @@ package com.tesco.hackathon.controller;
 
 import com.tesco.hackathon.exception.ResourceNotFoundException;
 import com.tesco.hackathon.model.Cart;
+import com.tesco.hackathon.model.CartDTO;
 import com.tesco.hackathon.model.CartKey;
 import com.tesco.hackathon.model.Product;
 import com.tesco.hackathon.repository.CartRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -60,7 +62,7 @@ public class ProductController {
     @GetMapping("/cart/{cartId}")
     @ResponseBody
     @CrossOrigin
-    public List<Cart> getCartItems(@PathVariable int cartId) {
+    public Set<CartDTO> getCartItems(@PathVariable int cartId) {
         System.out.println("*** gettting all products****");
         return productRepository.getCartItems(cartId);
     }
