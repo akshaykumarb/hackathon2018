@@ -49,9 +49,9 @@ public class ProductController {
     @GetMapping("/products/{cartId}/{itemDesc}")
     @ResponseBody
     @CrossOrigin
-    public void searchProduct(@PathVariable int cartID, @PathVariable String itemDesc) {
+    public void searchProduct(@PathVariable int cartId, @PathVariable String itemDesc) {
 // search the product in product table for description and insert to cart table
-      productRepository.insertToCart(cartID,itemDesc);
+      productRepository.insertToCart(cartId,itemDesc);
 
 
     }
@@ -60,9 +60,9 @@ public class ProductController {
     @GetMapping("/cart/{cartId}")
     @ResponseBody
     @CrossOrigin
-    public List<Cart> getCartItems(@PathVariable int cartID) {
+    public List<Cart> getCartItems(@PathVariable int cartId) {
         System.out.println("*** gettting all products****");
-        return productRepository.getCartItems(cartID);
+        return productRepository.getCartItems(cartId);
     }
 
 
