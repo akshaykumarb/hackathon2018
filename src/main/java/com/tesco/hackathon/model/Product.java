@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Entity
-@Table(name ="producr_details")
+@Table(name ="product_details")
 //@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
 //        allowGetters = true)
 public class Product implements Serializable {
@@ -20,7 +20,7 @@ public class Product implements Serializable {
     private String item_name;
 
 
-    private String desc;
+    private String item_description;
 
 
 }
