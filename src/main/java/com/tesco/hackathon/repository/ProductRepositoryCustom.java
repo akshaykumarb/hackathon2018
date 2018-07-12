@@ -7,8 +7,6 @@ import java.util.List;
 public interface ProductRepositoryCustom {
 
 
-    public List<Cart> getProduct(String desc);
-
     public void insertToCart(String desc);
 
 }

@@ -34,16 +34,6 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-//    @GetMapping("/products/{id}")
-//    @ResponseBody
-//
-//    public Product getProductId(@PathVariable(value = "id") Long productId) {
-//        System.out.println("*** gettting single  products****" + productId);
-//
-//        searchProduct("TescoTea");
-//        return productRepository.findById(productId)
-//                .orElseThrow(() -> new ResourceNotFoundException("Product", "id", productId));
-//    }
 
     @GetMapping("/products/{desc}")
     @ResponseBody
