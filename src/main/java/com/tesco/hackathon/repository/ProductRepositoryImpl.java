@@ -42,7 +42,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
     public List<Cart> getCartItems(int cartId) {
 
 
-            List<Cart> cartList = entityManager.createQuery("select * from Cart where cart_id = :description").setParameter("description", cartId).getResultList();
+            List<Cart> cartList = entityManager.createQuery("from Cart where cart_id = :description").setParameter("description", cartId).getResultList();
             System.out.println("productList.size()......" + cartList.size());
            // productList.stream().forEach(row -> cartRepository.save(new Cart((String) row[0], (BigDecimal) row[1],cartId)));
         return  cartList;
