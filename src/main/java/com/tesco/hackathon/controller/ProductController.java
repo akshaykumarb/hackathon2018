@@ -27,8 +27,7 @@ public class ProductController {
     @Autowired
     CartRepository cartRepository;
 
-    @Autowired
-    CartKey cartKey;
+
 
 
     @GetMapping("/products")
