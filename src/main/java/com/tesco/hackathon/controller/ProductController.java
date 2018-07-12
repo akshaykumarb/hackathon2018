@@ -40,13 +40,13 @@ public class ProductController {
 
     @GetMapping("/cart")
     @ResponseBody
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin
     public List<Cart> getCart() {
         System.out.println("*** gettting all products****");
         return cartRepository.findAll();
     }
 
-    @GetMapping("/products/{cartKey}")
+    @GetMapping("/products/{cartId}/")
     @ResponseBody
     public void searchProduct(@PathVariable CartKey cartKey) {
 // search the product in product table for description and insert to cart table
