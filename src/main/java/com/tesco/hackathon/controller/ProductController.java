@@ -46,15 +46,24 @@ public class ProductController {
         return cartRepository.findAll();
     }
 
-    @GetMapping("/products/{cartId}/")
+    @GetMapping("/products/{cartId}/{itemDesc}")
     @ResponseBody
-    public void searchProduct(@PathVariable CartKey cartKey) {
+    @CrossOrigin
+    public void searchProduct(@PathVariable int cartID, @PathVariable String itemDesc) {
 // search the product in product table for description and insert to cart table
-      productRepository.insertToCart(cartKey);
+      productRepository.insertToCart(cartID,itemDesc);
 
 
     }
 
+
+    @GetMapping("/cart/{cartId}")
+    @ResponseBody
+    @CrossOrigin
+    public List<Cart> getCartItems(@PathVariable int cartID) {
+        System.out.println("*** gettting all products****");
+        return productRepository.getCartItems(cartID);
+    }
 
 
 }
