@@ -40,6 +40,7 @@ public class ProductController {
 
     @GetMapping("/cart")
     @ResponseBody
+    @CrossOrigin(origins = "http://localhost:9000")
     public List<Cart> getCart() {
         System.out.println("*** gettting all products****");
         return cartRepository.findAll();
