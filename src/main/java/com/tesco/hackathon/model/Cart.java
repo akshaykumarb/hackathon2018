@@ -16,6 +16,11 @@ public class Cart implements Serializable {
 
     private BigDecimal  price;
 
+    public Cart(String item_name, BigDecimal  price) {
+        this.item_name=item_name;
+        this.price=price;
+    }
+
     public Long getId() {
         return id;
     }

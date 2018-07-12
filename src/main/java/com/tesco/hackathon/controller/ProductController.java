@@ -1,9 +1,9 @@
 package com.tesco.hackathon.controller;
 
 
-import com.sun.tools.javap.TypeAnnotationWriter;
-import com.tesco.hackathon.Exception.ResourceNotFoundException;
 
+
+import com.tesco.hackathon.exception.ResourceNotFoundException;
 import com.tesco.hackathon.model.Cart;
 import com.tesco.hackathon.model.Product;
 import com.tesco.hackathon.repository.CartRepository;
@@ -34,32 +34,26 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-    @GetMapping("/products/{id}")
+//    @GetMapping("/products/{id}")
+//    @ResponseBody
+//
+//    public Product getProductId(@PathVariable(value = "id") Long productId) {
+//        System.out.println("*** gettting single  products****" + productId);
+//
+//        searchProduct("TescoTea");
+//        return productRepository.findById(productId)
+//                .orElseThrow(() -> new ResourceNotFoundException("Product", "id", productId));
+//    }
+
+    @GetMapping("/products/{desc}")
     @ResponseBody
-
-    public Product getProductId(@PathVariable(value = "id") Long productId) {
-        System.out.println("*** gettting single  products****" + productId);
-
-        searchProduct("Tea");
-        return productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Product", "id", productId));
-    }
-
-    public void searchProduct(String desc) {
-
-        insertToCart(productRepository.getProduct(desc));
-        // search the product in product table for description and return cart object
-
-    }
-
-
-    // insert product to cart
-    public void insertToCart(Cart cart) {
-        cart.setItem_name("tea");
-        cart.setPrice(BigDecimal.valueOf(30.00));
-        cartRepository.save(cart);
+    public void searchProduct(@PathVariable(value = "desc") String desc) {
+// search the product in product table for description and insert to cart table
+      productRepository.insertToCart(desc);
 
 
     }
+
+
 
 }
