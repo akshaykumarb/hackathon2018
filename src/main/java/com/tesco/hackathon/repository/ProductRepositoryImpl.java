@@ -29,12 +29,12 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
 
 
     @Override
-    public void insertToCart(int cartId, String itemDesc) {
+    public void insertToCart(int cartId, String itemName) {
 
-        String[] splitStr = itemDesc.split("\\s+");
+        String[] splitStr = itemName.split("\\s+");
 
         for (String product : splitStr) {
-            List<Object[]> productList = entityManager.createQuery("select item_name, price, item_description from Product where item_description = :description").setParameter("description", product).getResultList();
+            List<Object[]> productList = entityManager.createQuery("select item_name, price, item_description from Product where item_name = :description").setParameter("description", product).getResultList();
             System.out.println("productList.size()......" + productList.size());
             productList.stream().forEach(row -> cartRepository.save(new Cart((String) row[0], (BigDecimal) row[1],cartId, (String) row[2])));
         }
