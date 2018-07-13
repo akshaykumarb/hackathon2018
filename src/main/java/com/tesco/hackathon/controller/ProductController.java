@@ -13,7 +13,9 @@ import com.tesco.hackathon.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Set;
 
@@ -51,9 +53,10 @@ public class ProductController {
     @GetMapping("/products/{cartId}/{itemName}")
     @ResponseBody
     @CrossOrigin
-    public void searchProduct(@PathVariable int cartId, @PathVariable String itemName) {
+    public void searchProduct(@PathVariable int cartId, @PathVariable String itemName) throws UnsupportedEncodingException {
 // search the product in product table for description and insert to cart table
-      productRepository.insertToCart(cartId,itemName);
+        String decodedString = URLDecoder.decode(itemName, "UTF-8");
+        productRepository.insertToCart(cartId,decodedString);
 
 
     }
